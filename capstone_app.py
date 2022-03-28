@@ -25,17 +25,17 @@ with col1:
   remaining_deck = deck.copy()
   my_cards = set({})
   community = set({})
-  selection1 = st.multiselect("Which two cards have you got:", remaining_deck)
-  enter1 = st.button("Confirm")
+  selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
+  enter1 = st.button("Confirm the 2 cards")
   
   selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
-  enter2 = st.button("Confirm")
+  enter2 = st.button("Confirm the first 3 community cards")
   
   selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
-  enter3 = st.button("Confirm")
+  enter3 = st.button("Confirm the 4th community card")
   
   selection4 = st.selectbox("The river: 5th community card", remaining_deck)
-  enter4 = st.button("Confirm")
+  enter4 = st.button("Confirm the 5th community card")
   
   
   game = st.button("Start a new game")  

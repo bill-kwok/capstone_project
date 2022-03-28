@@ -33,8 +33,8 @@ with col1:
   remaining_deck = deck.copy()
   my_cards = set({})
   community = set({})
-  with st.form(selection1, clear_on_submit=True):
-    selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
+  
+  selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
   enter1 = st.button("Confirm the 2 cards")
   if enter1:
     a = 1
@@ -52,7 +52,7 @@ with col1:
   enter4 = st.button("Confirm the 5th community card")
   
   
-  game = st.form_submit_button("Start a new game")  
+  game = st.button("Start a new game")  
   if game:
     remaining_deck = deck.copy()
     my_cards = set({})

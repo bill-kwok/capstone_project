@@ -33,7 +33,8 @@ with col1:
   remaining_deck = deck.copy()
   my_cards = set({})
   community = set({})
-  selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
+  with st.form(selection1, clear_on_submit=True):
+    selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
   enter1 = st.button("Confirm the 2 cards")
   if enter1:
     a = 1

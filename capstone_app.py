@@ -52,12 +52,11 @@ with col1:
   enter4 = st.button("Confirm the 5th community card")
   
   
-  game = st.button("Start a new game")  
+  game = st.form_submit_button("Start a new game")  
   if game:
     remaining_deck = deck.copy()
     my_cards = set({})
     community = set({})
-    st.empty()
     
 with col2:
   if table:

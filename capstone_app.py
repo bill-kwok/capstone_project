@@ -15,6 +15,7 @@ deck = [num_to_card(i) for i in range(52)]
 
 st.header("Welcome!")
 st.subheader("Are you going to play Texas Hold'em Poker?")
+st.title("")
 
 with st.sidebar:
   table = st.checkbox("Table")
@@ -24,10 +25,20 @@ with col1:
   remaining_deck = deck.copy()
   my_cards = set({})
   community = set({})
-  first_selection = st.multiselect("Which two cards have you got:", remaining_deck)
+  selection1 = st.multiselect("Which two cards have you got:", remaining_deck)
   enter1 = st.button("Confirm")
-  game = st.button("Start a new game")
   
+  selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
+  enter2 = st.button("Confirm")
+  
+  selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
+  enter3 = st.button("Confirm")
+  
+  selection4 = st.selectbox("The river: 5th community card", remaining_deck)
+  enter4 = st.button("Confirm")
+  
+  
+  game = st.button("Start a new game")  
   if game:
     remaining_deck = deck.copy()
     my_cards = set({})

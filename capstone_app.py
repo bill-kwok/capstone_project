@@ -19,6 +19,10 @@ st.title("")
 
 with st.sidebar:
   table = st.checkbox("Table")
+  bar = st.checkbox("Bar chart")
+  bar_size = st.slider("Size of bar chart", 1, 10, 5)
+  pie = st.checkbox("Pie chart")
+  pie_size = st.slider("Size of pie chart", 1, 10, 5)
 
 col1, col2 = st.columns(2)
 with col1:

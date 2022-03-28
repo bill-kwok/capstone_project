@@ -21,14 +21,17 @@ with st.sidebar:
 
 col1, col2 = st.columns(2)
 with col1:
+  remaining_deck = deck.copy()
+  my_cards = set({})
+  community = set({})
+  first_selection = st.multiselect("Which two cards have you got:", remaining_deck)
+  enter1 = st.button("Confirm")
   game = st.button("Start a new game")
+  
   if game:
     remaining_deck = deck.copy()
     my_cards = set({})
     community = set({})
-  first_selection = st.multiselect("Which two cards have you got:", remaining_deck)
-  enter1 = st.button("Confirm")
-
     
 with col2:
   if table:

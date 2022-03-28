@@ -19,7 +19,7 @@ st.subheader("Are you going to play Texas Hold'em Poker?")
 with st.sidebar:
   table = st.checkbox("Table")
 
-col1, col2 = st.columns(3)
+col1, col2 = st.columns(2)
 with col1:
   game = st.button("Start a new game")
   if game:

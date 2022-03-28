@@ -1,1 +1,1 @@
-import math
+print('hi')

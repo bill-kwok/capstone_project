@@ -28,7 +28,7 @@ with st.sidebar:
   pie = st.checkbox("Pie chart")
   pie_size = st.slider("Size of pie chart", 1, 10, 5)
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([1,4])
 with col1:
   remaining_deck = deck.copy()
   my_cards = set({})

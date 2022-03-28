@@ -19,6 +19,7 @@ st.text("")
 
 with st.sidebar:
   table = st.checkbox("Table")
+  dp = st.slider("Number of decimal places", 1, 6, 2)
   st.title("")
   st.title("")
   bar = st.checkbox("Bar chart")

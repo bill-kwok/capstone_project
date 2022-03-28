@@ -26,8 +26,7 @@ with col1:
     remaining_deck = deck.copy()
     my_cards = set({})
     community = set({})
-    first_selection = st.multiselect("Which two cards have you got:", 
-                                     remaining_deck, remaining_deck)
+    first_selection = st.multiselect("Which two cards have you got:", remaining_deck)
     enter1 = st.button("Confirm")
 
     

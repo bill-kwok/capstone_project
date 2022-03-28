@@ -56,7 +56,6 @@ with col1:
     remaining_deck = deck.copy()
     my_cards = set({})
     community = set({})
-    st.empty()
     
 with col2:
   if table:

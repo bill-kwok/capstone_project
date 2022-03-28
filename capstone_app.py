@@ -23,12 +23,14 @@ col1, col2 = st.columns(2)
 with col1:
   game = st.button("Start a new game")
   if game:
-     remaining_deck = deck.copy()
-     my_cards = set({})
-     community = set({})
-  first_selection = st.multiselect("Which two cards do you get:", remaining_deck)
-  enter1 = st.button("Confirm")
+    remaining_deck = deck.copy()
+    my_cards = set({})
+    community = set({})
+    first_selection = st.multiselect("Which two cards have you got:", 
+                                     remaining_deck, remaining_deck)
+    enter1 = st.button("Confirm")
 
+    
 with col2:
   if table:
     df

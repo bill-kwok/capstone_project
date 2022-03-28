@@ -35,6 +35,8 @@ with col1:
   community = set({})
   selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
   enter1 = st.button("Confirm the 2 cards")
+  if enter1:
+    
   
   st.text("")
   selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
@@ -54,6 +56,7 @@ with col1:
     remaining_deck = deck.copy()
     my_cards = set({})
     community = set({})
+    st.empty()
     
 with col2:
   if table:

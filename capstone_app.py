@@ -15,7 +15,7 @@ deck = [num_to_card(i) for i in range(52)]
 
 st.header("Welcome!")
 st.subheader("Are you going to play Texas Hold'em Poker?")
-st.text("\n")
+st.write("")
 
 with st.sidebar:
   table = st.checkbox("Table")

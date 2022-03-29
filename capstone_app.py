@@ -180,7 +180,8 @@ st.header("Welcome for using this calculator for Texas Hold'em Poker!")
 st.text("")
 game = st.button("Start a new game")
 if game:
-  st.text("Untick all your choices and you can start a new game. Streamlit does not allow me to untick for you unfortunately.")
+  st.text("The new game will start automatically once you untick all of the options below.)
+  st.text("Unfortunately, Streamlit does not allow me to untick for you at this moment.")
   
 with st.sidebar:
   table = st.checkbox("Table")

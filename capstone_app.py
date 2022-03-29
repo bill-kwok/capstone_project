@@ -224,7 +224,8 @@ with col1:
 with col2:
   if table:
     prob = [str(round(i*100, dp)) + ' %' for i in sec_col]
-    pd.DataFrame({'':first_col, 'probability':prob})
+    show_table = pd.DataFrame({'':first_col, 'probability':prob})
+    show_table
     
   if bar:
     plt.figure(figsize = (bar_size, bar_size))

@@ -8,12 +8,12 @@ import seaborn as sns
 
 from itertools import combinations
 #-------------------------------------------------------------------------
-deck = [i for i in range(52)]
+deck = {i for i in range(52)}
 remaining_deck = deck.copy()
 my_cards, community = set({}), set({})
 df = pd.read_csv("data_for_first_two_cards.csv")
-first_col = []
-sec_col = []
+first_col = ["Texas Hold'em Poker"]
+sec_col = [1]
 #-------------------------------------------------------------------------
 def num_to_card(num):
   suit_dict = {0:'Spade', 1:'Heart', 2:'Club', 3:'Diamond'}

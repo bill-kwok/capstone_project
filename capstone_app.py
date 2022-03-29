@@ -41,29 +41,22 @@ col1, col2 = st.columns([1,3])
 
 with col1:
   remaining_deck, my_cards, community, flop, turn, river = reset_game()
-
-    
+  
   selection1 = st.multiselect("Which 2 cards have you got:", [num_to_card(i) for i in remaining_deck])
   enter1 = st.checkbox("Confirm the 2 cards")
   if enter1:
     st.write(type(selection1)
 
-  selection2 = st.multiselect("The flop: first 3 community cards", [num_to_card(i) for i in remaining_deck])
+  flop = st.multiselect("The flop: first 3 community cards", [num_to_card(i) for i in remaining_deck])
   enter2 = st.checkbox("Confirm the first 3 community cards")
-  if enter2:
-    flop = selection2.copy()
   st.write(flop)
 
-  selection3 = st.selectbox("The turn: 4th community card", [num_to_card(i) for i in remaining_deck])
+  turn = st.selectbox("The turn: 4th community card", [num_to_card(i) for i in remaining_deck])
   enter3 = st.checkbox("Confirm the 4th community card")
-  if enter3:
-    turn = selection3
   st.write(turn)
 
-  selection4 = st.selectbox("The river: 5th community card", [num_to_card(i) for i in remaining_deck])
+  river = st.selectbox("The river: 5th community card", [num_to_card(i) for i in remaining_deck])
   enter4 = st.checkbox("Confirm the 5th community card")
-  if enter4:
-    river = selection4
   st.write(river)
     
 with col2:

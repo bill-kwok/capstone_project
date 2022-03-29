@@ -38,15 +38,15 @@ col1, col2 = st.columns([1,3])
 
 with col1:
   with st.form('my_key', clear_on_submit=True):
-    with st.form('my_key'):
-      remaining_deck, my_cards, community, flop, turn, river = reset_game()
-      game = st.form_submit_button("Start a new game")  
-
-    selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
-    enter1 = st.checkbox("Confirm the 2 cards")
-    if enter1:
-      my_cards.update(set(selection1))
-    st.write(my_cards)
+    remaining_deck, my_cards, community, flop, turn, river = reset_game()
+    game = st.form_submit_button("Start a new game")  
+    
+    with st.form('form1'):
+      selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
+      enter1 = st.checkbox("Confirm the 2 cards")
+      if enter1:
+        my_cards.update(set(selection1))
+      st.write(my_cards)
 
     selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
     enter2 = st.checkbox("Confirm the first 3 community cards")

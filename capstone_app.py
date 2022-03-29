@@ -46,28 +46,28 @@ with col1:
     selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
     enter1 = st.form_submit_button("Confirm the 2 cards")
     if enter1:
-      my_cards = selection1
+      my_cards = selection1.copy()
     st.text(my_cards)
       
   with st.form('selection2', clear_on_submit = True):
     selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
     enter2 = st.form_submit_button("Confirm the first 3 community cards")
     if enter2:
-      flop = selection2
+      flop = selection2.copy()
     st.text(flop)
   
   with st.form('selection3', clear_on_submit = True):
     selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
     enter3 = st.form_submit_button("Confirm the 4th community card")
     if enter3:
-      turn = selection3
+      turn = selection3.copy()
     st.text(turn)
   
   with st.form('selection4', clear_on_submit = True):
     selection4 = st.selectbox("The river: 5th community card", remaining_deck)
     enter4 = st.form_submit_button("Confirm the 5th community card")
     if enter4:
-      river = selection4
+      river = selection4.copy()
     st.text(river)
       
 with col2:

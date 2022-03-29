@@ -200,45 +200,66 @@ with col1:
   hand_cards = st.multiselect("Which 2 cards have you got:", [num_to_card(i) for i in remaining_deck])
   enter1 = st.checkbox("Confirm the 2 cards")
   if enter1:
-    first_col = hand_list
-    sec_col = first_two(card_to_num(hand_cards[0]), card_to_num(hand_cards[1]))
-      
+    if len(hand_cards) != 2:
+      st.error("You should have 2 cards.")
+      st.stop()
+    else:
+      first_col = hand_list
+      sec_col = first_two(card_to_num(hand_cards[0]), card_to_num(hand_cards[1]))
+         
   flop = st.multiselect("The flop: first 3 community cards", [num_to_card(i) for i in remaining_deck])
   enter2 = st.checkbox("Confirm the first 3 community cards")
   if enter2:
-    first_col = hand_list
-    sec_col = second_flop(card_to_num(flop[0]), card_to_num(flop[1]), card_to_num(flop[2]))                    
+    if enter1 == False:
+      st.error("You have to confirm the 2 cards you get first.")
+      st.stop()      
+    elif len(flop) != 3:
+      st.error("There should be 3 cards.")
+      st.stop()
+    else:
+      first_col = hand_list
+      sec_col = second_flop(card_to_num(flop[0]), card_to_num(flop[1]), card_to_num(flop[2]))                    
 
   turn = st.selectbox("The turn: 4th community card", [num_to_card(i) for i in remaining_deck])
   enter3 = st.checkbox("Confirm the 4th community card")
   if enter3:
-    first_col = hand_list
-    sec_col = third_turn(card_to_num(turn))
+    if enter2 == False:
+      st.error("You have to confirm the first 3 community cards first.")
+      st.stop()      
+    else:
+      first_col = hand_list
+      sec_col = third_turn(card_to_num(turn))
 
   river = st.selectbox("The river: 5th community card", [num_to_card(i) for i in remaining_deck])
   enter4 = st.checkbox("Confirm the 5th community card")
   if enter4:
-    first_col = ['Minimum Win rate', 'Maximum Draw rate', 'Minimum Lose rate']
-    my_hand, sec_col = forth_river(card_to_num(river))
-    st.write('I have "{}".'.format(hand_dict[my_hand]))
+    if enter3 == False:
+      st.error("You have to confirm the forth community card first.")
+      st.stop()      
+    else:
+      first_col = ['Minimum Win rate', 'Maximum Draw rate', 'Minimum Lose rate']
+      my_hand, sec_col = forth_river(card_to_num(river))
+      st.write('I have "{}".'.format(hand_dict[my_hand]))
              
 with col2:
-  if table:
-    prob = [str(round(i*100, dp)) + ' %' for i in sec_col]
-    show_table = pd.DataFrame({'':first_col, 'probability':prob})
-    show_table
-    
-  if bar:
-    show_bar = plt.figure(figsize = (bar_size/2, bar_size/2))
-    plt.rc('font', size = bar_size + 2)
-    sns.barplot(x = first_col, y = sec_col)
-    plt.xticks(rotation = 45, horizontalalignment = 'right')
-    st.pyplot(show_bar)  
-    
-  if pie:
-    show_pie = plt.figure(figsize = (pie_size/2, pie_size/2))
-    plt.rc('font', size = pie_size + 2)
-    palette = sns.color_palette('colorblind')
-    plt.pie(sec_col, labels = first_col, colors = palette, autopct='%.{}f%%'.format(dp))
-    st.pyplot(show_pie)
+  sub_col1, sub_col2, sub_col3 = st.columns(3)
+  with sub_col1:
+    if table:
+      prob = [str(round(i*100, dp)) + ' %' for i in sec_col]
+      show_table = pd.DataFrame({'':first_col, 'probability':prob})
+      show_table
+  with sub_col2:  
+    if bar:
+      show_bar = plt.figure(figsize = (bar_size/2, bar_size/2))
+      plt.rc('font', size = bar_size + 2)
+      sns.barplot(x = first_col, y = sec_col)
+      plt.xticks(rotation = 45, horizontalalignment = 'right')
+      st.pyplot(show_bar)  
+  with sub_col3:  
+    if pie:
+      show_pie = plt.figure(figsize = (pie_size/2, pie_size/2))
+      plt.rc('font', size = pie_size + 2)
+      palette = sns.color_palette('colorblind')
+      plt.pie(sec_col, labels = first_col, colors = palette, autopct='%.{}f%%'.format(dp))
+      st.pyplot(show_pie)
 

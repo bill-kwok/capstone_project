@@ -1,12 +1,12 @@
 #pip install matplotlib
-#pip install seaborn
+pip install seaborn
 #-------------------------------------------------------------------------
 import streamlit as st
 import pandas as pd
 
 from itertools import combinations
 
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import seaborn as sns
 #-------------------------------------------------------------------------
 deck = [i for i in range(52)]

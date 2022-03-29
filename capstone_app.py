@@ -13,8 +13,7 @@ def num_to_card(num):
 df = pd.read_csv("data_for_first_two_cards.csv")
 deck = [num_to_card(i) for i in range(52)]
 
-st.header("Welcome!")
-st.subheader("Are you going to play Texas Hold'em Poker?")
+st.header("Welcome for using this calculator for Texas Hold'em Poker!")
 st.text("")
 
 with st.sidebar:
@@ -60,5 +59,34 @@ with col1:
     community = set({})
     
 with col2:
-  if table:
-    df
+  remaining_deck = deck.copy()
+  my_cards = set({})
+  community = set({})
+  
+  with st.form('selection1', clear_on_submit = True):
+    selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
+    enter1 = st.form_submit_button("Confirm the 2 cards")
+    if enter1:
+      a = 1
+  
+  st.text("")
+  with st.form('selection2', clear_on_submit = True):
+    selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
+    enter2 = st.form_submit_button("Confirm the first 3 community cards")
+  
+  st.text("")
+  with st.form('selection3', clear_on_submit = True):
+    selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
+    enter3 = st.form_submit_button("Confirm the 4th community card")
+  
+  st.text("")
+  with st.form('selection4', clear_on_submit = True):
+    selection4 = st.selectbox("The river: 5th community card", remaining_deck)
+    enter4 = st.form_submit_button("Confirm the 5th community card")
+  
+  
+  game = st.button("Start a new game")  
+  if game:
+    remaining_deck = deck.copy()
+    my_cards = set({})
+    community = set({})

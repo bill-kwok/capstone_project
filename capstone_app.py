@@ -37,6 +37,7 @@ with st.sidebar:
 col1, col2 = st.columns([1,3])
 
 with col1:
+  a = 0
   remaining_deck, my_cards, community, flop, turn, river = reset_game()
   game = st.button("Start a new game")  
   if game:
@@ -47,6 +48,7 @@ with col1:
     enter1 = st.form_submit_button("Confirm the 2 cards")
     if enter1:
       my_cards = selection1.copy()
+      a = 1
     st.text(my_cards)
       
   with st.form('selection2', clear_on_submit = True):
@@ -54,6 +56,7 @@ with col1:
     enter2 = st.form_submit_button("Confirm the first 3 community cards")
     if enter2:
       flop = selection2.copy()
+      a = 2
     st.text(flop)
   
   with st.form('selection3', clear_on_submit = True):
@@ -71,6 +74,7 @@ with col1:
     st.text(river)
       
 with col2:
+  st.write(a)
   if table:
     df
   

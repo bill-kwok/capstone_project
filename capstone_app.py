@@ -255,7 +255,7 @@ with col3:
     plt.xticks(rotation = 45, horizontalalignment = 'right')
     st.pyplot(show_bar)  
 
- with col4:
+with col4:
   if pie:
     show_pie = plt.figure(figsize = (pie_size/2, pie_size/2))
     plt.rc('font', size = pie_size + 2)

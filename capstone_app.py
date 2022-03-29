@@ -229,12 +229,14 @@ with col2:
     
   if bar:
     show_bar = plt.figure(figsize = (bar_size, bar_size))
+    plt.rc('font', size=SMALL_SIZE)
     sns.barplot(x = first_col, y = sec_col)
     plt.xticks(rotation = 45, horizontalalignment = 'right')
     st.pyplot(show_bar)  
     
   if pie:
     show_pie = plt.figure(figsize = (pie_size, pie_size))
+    plt.rc('font', size=SMALL_SIZE)
     palette = sns.color_palette('colorblind')
     plt.pie(sec_col, labels = first_col, colors = palette, autopct='%.{}f%%'.format(dp))
     st.pyplot(show_pie)

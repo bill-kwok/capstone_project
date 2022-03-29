@@ -177,7 +177,7 @@ def forth_river(card):
 #--------------------------------------------------------------------------------------------
 st.set_page_config(layout = "wide")
 st.subheader("Calculator for Texas Hold'em Poker 🃏")
-st.subheader("Welcome and Good Luck! ♠️ ♥️ ♣️ ♦️ ")
+st.subheader("Welcome and Good Luck! ♠️ \U+2665 ♣️ ♦️ ")
 st.text("")
 game = st.button("Start a new game")
 if game:

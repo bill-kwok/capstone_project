@@ -46,21 +46,25 @@ with col1:
   enter1 = st.button("Confirm the 2 cards")
   if enter1:
     my_cards.update(set(selection1))
+  st.write(my_cards)
       
   selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
   enter2 = st.button("Confirm the first 3 community cards")
   if enter2:
     flop = selection2.copy()
+  st.write(flop)
   
   selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
   enter3 = st.button("Confirm the 4th community card")
   if enter3:
     turn = selection3
+  st.write(turn)
   
   selection4 = st.selectbox("The river: 5th community card", remaining_deck)
   enter4 = st.button("Confirm the 5th community card")
   if enter4:
     river = selection4
+  st.write(river)
       
 with col2:
   if table:

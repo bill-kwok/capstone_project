@@ -176,11 +176,12 @@ def forth_river(card):
   return my_rank, win_rate
 #--------------------------------------------------------------------------------------------
 st.set_page_config(layout = "wide")
-st.header("Welcome for using this calculator for Texas Hold'em Poker!")
+st.subheader("Calculator for Texas Hold'em Poker")
+st.subheader("Welcome and Good Luck!")
 st.text("")
 game = st.button("Start a new game")
 if game:
-  st.text("The new game will start automatically once you untick all of the options below.)
+  st.text("The new game will start automatically once you untick all of the options below.")
   st.text("Unfortunately, Streamlit does not allow me to untick for you at this moment.")
   
 with st.sidebar:

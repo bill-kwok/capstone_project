@@ -31,7 +31,12 @@ with st.sidebar:
 col1, col2 = st.columns([1,3])
 
 with col1:
-
+  remaining_deck = deck.copy()
+  game = st.button("Start a new game")  
+  if game:
+    remaining_deck = deck.copy()
+    my_cards = set({})
+    community = set({})
   
   with st.form('selection1', clear_on_submit = True):
     selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
@@ -57,11 +62,7 @@ with col1:
     if enter4:
       st.write(selection4)
       
-  game = st.button("Start a new game")  
-  if game:
-    remaining_deck = deck.copy()
-    my_cards = set({})
-    community = set({})
+
     
 with col2:
   if table:

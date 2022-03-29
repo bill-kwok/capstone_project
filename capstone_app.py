@@ -175,6 +175,7 @@ def forth_river(card):
   win_rate = [i/total for i in win_rate]
   return my_rank, win_rate
 #--------------------------------------------------------------------------------------------
+st.set_page_config(layout = "wide")
 st.header("Welcome for using this calculator for Texas Hold'em Poker!")
 st.text("")
 game = st.button("Start a new game")

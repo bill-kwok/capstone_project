@@ -236,6 +236,6 @@ with col2:
   if pie:
     show_pie = plt.figure(figsize = (pie_size, pie_size))
     palette = sns.color_palette('colorblind')
-    plt.pie(sec_col, labels = first_col, colors = palette, autopct='%.dpf%%')
+    plt.pie(sec_col, labels = first_col, colors = palette, autopct='%.{}f%%'.format(dp))
     st.pyplot(show_pie)
 

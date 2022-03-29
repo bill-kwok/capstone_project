@@ -194,7 +194,7 @@ with st.sidebar:
   pie = st.checkbox("Pie chart")
   pie_size = st.slider("Size of pie chart", 1, 10, 5)
 
-col1, col2 = st.columns([1,3])
+col1, col2, col3, col4 = st.columns([5,5, bar_size, pie_size])
 
 with col1:  
   hand_cards = st.multiselect("Which 2 cards have you got:", [num_to_card(i) for i in remaining_deck])
@@ -242,24 +242,24 @@ with col1:
       st.write('I have "{}".'.format(hand_dict[my_hand]))
              
 with col2:
-  sub_col1, sub_col2, sub_col3 = st.columns(3)
-  with sub_col1:
-    if table:
-      prob = [str(round(i*100, dp)) + ' %' for i in sec_col]
-      show_table = pd.DataFrame({'':first_col, 'probability':prob})
-      show_table
-  with sub_col2:  
-    if bar:
-      show_bar = plt.figure(figsize = (bar_size/2, bar_size/2))
-      plt.rc('font', size = bar_size + 2)
-      sns.barplot(x = first_col, y = sec_col)
-      plt.xticks(rotation = 45, horizontalalignment = 'right')
-      st.pyplot(show_bar)  
-  with sub_col3:  
-    if pie:
-      show_pie = plt.figure(figsize = (pie_size/2, pie_size/2))
-      plt.rc('font', size = pie_size + 2)
-      palette = sns.color_palette('colorblind')
-      plt.pie(sec_col, labels = first_col, colors = palette, autopct='%.{}f%%'.format(dp))
-      st.pyplot(show_pie)
+  if table:
+    prob = [str(round(i*100, dp)) + ' %' for i in sec_col]
+    show_table = pd.DataFrame({'':first_col, 'probability':prob})
+    show_table
+
+with col3:
+  if bar:
+    show_bar = plt.figure(figsize = (bar_size/2, bar_size/2))
+    plt.rc('font', size = bar_size + 2)
+    sns.barplot(x = first_col, y = sec_col)
+    plt.xticks(rotation = 45, horizontalalignment = 'right')
+    st.pyplot(show_bar)  
+
+ with col4:
+  if pie:
+    show_pie = plt.figure(figsize = (pie_size/2, pie_size/2))
+    plt.rc('font', size = pie_size + 2)
+    palette = sns.color_palette('colorblind')
+    plt.pie(sec_col, labels = first_col, colors = palette, autopct='%.{}f%%'.format(dp))
+    st.pyplot(show_pie)
 

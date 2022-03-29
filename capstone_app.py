@@ -37,7 +37,7 @@ with st.sidebar:
 col1, col2 = st.columns([1,3])
 
 with col1:
-  with st.form('my_key', clear_on_submit=True)
+  with st.form('my_key', clear_on_submit=True):
     remaining_deck, my_cards, community, flop, turn, river = reset_game()
     game = st.form_submit_button("Start a new game")  
 

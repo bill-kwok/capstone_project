@@ -11,17 +11,20 @@ def num_to_card(num):
   return suit + ' ' + str(rank)
 
 df = pd.read_csv("data_for_first_two_cards.csv")
-deck = [num_to_card(i) for i in range(52)]
+deck = [i for i in range(52)]
 
 def reset_game():
-  remaining_deck = deck.copy()
+  remaining_num = deck.copy()
   my_cards, community = set({}), set({})
   flop, turn, river = '', '', ''
-  return remaining_deck, my_cards, community, flop, turn, river
+  return remaining_num, my_cards, community, flop, turn, river
     
 st.header("Welcome for using this calculator for Texas Hold'em Poker!")
 st.text("")
-
+game = st.button("Start a new game")
+if game:
+  st.text("Untick all your choices and you can start a new game. Streamlit does not allow me to untick for you unfortunately.")
+  
 with st.sidebar:
   table = st.checkbox("Table")
   dp = st.slider("Number of decimal places", 1, 6, 2)
@@ -38,29 +41,27 @@ col1, col2 = st.columns([1,3])
 
 with col1:
   remaining_deck, my_cards, community, flop, turn, river = reset_game()
-  game = st.button("Start a new game")
-  if game:
-    st.text("Untick all your choices and you can start a new game. Streamlit does not allow me to untick for you unfortunately.")
+
     
-  selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
+  selection1 = st.multiselect("Which 2 cards have you got:", [num_to_card(i) for i in remaining_deck])
   enter1 = st.checkbox("Confirm the 2 cards")
   if enter1:
     my_cards.update(set(selection1))
     st.write(my_cards)
 
-  selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
+  selection2 = st.multiselect("The flop: first 3 community cards", [num_to_card(i) for i in remaining_deck])
   enter2 = st.checkbox("Confirm the first 3 community cards")
   if enter2:
     flop = selection2.copy()
   st.write(flop)
 
-  selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
+  selection3 = st.selectbox("The turn: 4th community card", [num_to_card(i) for i in remaining_deck])
   enter3 = st.checkbox("Confirm the 4th community card")
   if enter3:
     turn = selection3
   st.write(turn)
 
-  selection4 = st.selectbox("The river: 5th community card", remaining_deck)
+  selection4 = st.selectbox("The river: 5th community card", [num_to_card(i) for i in remaining_deck])
   enter4 = st.checkbox("Confirm the 5th community card")
   if enter4:
     river = selection4

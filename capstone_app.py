@@ -37,35 +37,36 @@ with st.sidebar:
 col1, col2 = st.columns([1,3])
 
 with col1:
-  remaining_deck, my_cards, community, flop, turn, river = reset_game()
-  game = st.button("Start a new game")  
+  with st.form('my_key', clear_on_submit=True)
+    remaining_deck, my_cards, community, flop, turn, river = reset_game()
+    game = st.form_submit_button("Start a new game")  
 
-  selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
-  enter1 = st.checkbox("Confirm the 2 cards")
-  if enter1:
-    my_cards.update(set(selection1))
-  st.write(my_cards)
-      
-  selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
-  enter2 = st.checkbox("Confirm the first 3 community cards")
-  if enter2:
-    flop = selection2.copy()
-  st.write(flop)
-  
-  selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
-  enter3 = st.checkbox("Confirm the 4th community card")
-  if enter3:
-    turn = selection3
-  st.write(turn)
-  
-  selection4 = st.selectbox("The river: 5th community card", remaining_deck)
-  enter4 = st.checkbox("Confirm the 5th community card")
-  if enter4:
-    river = selection4
-  st.write(river)
-  
-  if game:
-    enter1, enter2, enter3, enter4 = False, False, False, False      
+    selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
+    enter1 = st.checkbox("Confirm the 2 cards")
+    if enter1:
+      my_cards.update(set(selection1))
+    st.write(my_cards)
+
+    selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
+    enter2 = st.checkbox("Confirm the first 3 community cards")
+    if enter2:
+      flop = selection2.copy()
+    st.write(flop)
+
+    selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
+    enter3 = st.checkbox("Confirm the 4th community card")
+    if enter3:
+      turn = selection3
+    st.write(turn)
+
+    selection4 = st.selectbox("The river: 5th community card", remaining_deck)
+    enter4 = st.checkbox("Confirm the 5th community card")
+    if enter4:
+      river = selection4
+    st.write(river)
+
+    if game:
+      enter1, enter2, enter3, enter4 = False, False, False, False      
     
 with col2:
   if table:

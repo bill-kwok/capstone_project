@@ -46,8 +46,10 @@ with col1:
   selection1 = st.multiselect("Which 2 cards have you got:", [num_to_card(i) for i in remaining_deck])
   enter1 = st.checkbox("Confirm the 2 cards")
   if enter1:
-    my_cards.update(set(selection1))
-    st.write(my_cards)
+    st.write(type(selection1)
+    for i in selection1:
+      st.write(i)
+      st.write(type(i)
 
   selection2 = st.multiselect("The flop: first 3 community cards", [num_to_card(i) for i in remaining_deck])
   enter2 = st.checkbox("Confirm the first 3 community cards")

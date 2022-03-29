@@ -1,11 +1,12 @@
 #-------------------------------------------------------------------------
 import streamlit as st
 import pandas as pd
-
-from itertools import combinations
+import numpy as np
 
 import matplotlib.pyplot as plt
 import seaborn as sns
+
+from itertools import combinations
 #-------------------------------------------------------------------------
 deck = [i for i in range(52)]
 remaining_deck = deck.copy()

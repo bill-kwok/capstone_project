@@ -40,7 +40,7 @@ with col1:
   remaining_deck, my_cards, community, flop, turn, river = reset_game()
   game = st.button("Start a new game")
   if game:
-    st.text("untick all your choices and you can start a new game.")
+    st.text("Untick all your choices and you can start a new game. Streamlit does not allow me to untick for you unfortunately.")
     
   selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
   enter1 = st.checkbox("Confirm the 2 cards")

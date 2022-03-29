@@ -12,7 +12,7 @@ deck = {i for i in range(52)}
 remaining_deck = deck.copy()
 my_cards, community = set({}), set({})
 df = pd.read_csv("data_for_first_two_cards.csv")
-first_col = ["Texas Hold'em Poker"]
+first_col = ["Sample"]
 sec_col = [1]
 #-------------------------------------------------------------------------
 def num_to_card(num):

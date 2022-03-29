@@ -39,9 +39,7 @@ col1, col2 = st.columns([1,3])
 with col1:
   remaining_deck, my_cards, community, flop, turn, river = reset_game()
   game = st.button("Start a new game")  
-  if game:
-    remaining_deck, my_cards, community, flop, turn, river = reset_game()
-    
+
   selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
   enter1 = st.checkbox("Confirm the 2 cards")
   if enter1:
@@ -65,7 +63,10 @@ with col1:
   if enter4:
     river = selection4
   st.write(river)
-      
+  
+  if game:
+    enter1, enter2, enter3, enter4 = False, False, False, False      
+    
 with col2:
   if table:
     df

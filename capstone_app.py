@@ -237,5 +237,5 @@ with col2:
     plt.figure(figsize = (pie_size, pie_size))
     palette = sns.color_palette('colorblind')
     show_pie = plt.pie(sec_col, labels = first_col, colors = palette, autopct='%.dpf%%')
-    show_pie
+    st.pyplot(show_pie)
 

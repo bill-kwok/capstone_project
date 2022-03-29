@@ -37,44 +37,32 @@ with st.sidebar:
 col1, col2 = st.columns([1,3])
 
 with col1:
-  a = 0
   remaining_deck, my_cards, community, flop, turn, river = reset_game()
   game = st.button("Start a new game")  
   if game:
-    a = 3
-    #remaining_deck, my_cards, community, flop, turn, river = reset_game()
-  
-  with st.form('selection1', clear_on_submit = True):
-    selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
-    enter1 = st.form_submit_button("Confirm the 2 cards")
-    if enter1:
-      my_cards.update(set(selection1))
-    st.text(my_cards)
+    remaining_deck, my_cards, community, flop, turn, river = reset_game()
+    
+  selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
+  enter1 = st.button("Confirm the 2 cards")
+  if enter1:
+    my_cards.update(set(selection1))
       
-  with st.form('selection2', clear_on_submit = True):
-    selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
-    enter2 = st.form_submit_button("Confirm the first 3 community cards")
-    if enter2:
-      flop = selection2.copy()
-      a = 2
-    st.text(flop)
+  selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
+  enter2 = st.button("Confirm the first 3 community cards")
+  if enter2:
+    flop = selection2.copy()
   
-  with st.form('selection3', clear_on_submit = True):
-    selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
-    enter3 = st.form_submit_button("Confirm the 4th community card")
-    if enter3:
-      turn = selection3
-    st.text(turn)
+  selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
+  enter3 = st.button("Confirm the 4th community card")
+  if enter3:
+    turn = selection3
   
-  with st.form('selection4', clear_on_submit = True):
-    selection4 = st.selectbox("The river: 5th community card", remaining_deck)
-    enter4 = st.form_submit_button("Confirm the 5th community card")
-    if enter4:
-      river = selection4
-    st.text(river)
+  selection4 = st.selectbox("The river: 5th community card", remaining_deck)
+  enter4 = st.button("Confirm the 5th community card")
+  if enter4:
+    river = selection4
       
 with col2:
-  st.write(a)
   if table:
     df
   

@@ -41,7 +41,8 @@ with col1:
   remaining_deck, my_cards, community, flop, turn, river = reset_game()
   game = st.button("Start a new game")  
   if game:
-    remaining_deck, my_cards, community, flop, turn, river = reset_game()
+    a = 3
+    #remaining_deck, my_cards, community, flop, turn, river = reset_game()
   
   with st.form('selection1', clear_on_submit = True):
     selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)

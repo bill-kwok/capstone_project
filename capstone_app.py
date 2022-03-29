@@ -38,8 +38,9 @@ col1, col2 = st.columns([1,3])
 
 with col1:
   with st.form('my_key', clear_on_submit=True):
-    remaining_deck, my_cards, community, flop, turn, river = reset_game()
-    game = st.form_submit_button("Start a new game")  
+    with st.form('my_key'):
+      remaining_deck, my_cards, community, flop, turn, river = reset_game()
+      game = st.form_submit_button("Start a new game")  
 
     selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
     enter1 = st.checkbox("Confirm the 2 cards")

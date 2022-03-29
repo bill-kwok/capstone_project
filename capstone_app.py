@@ -37,38 +37,38 @@ with col1:
     remaining_deck = deck.copy()
     my_cards = set({})
     community = set({})
-    selection1 = ''
-    selection2 = ''
-    selection3 = ''
-    selection4 = ''
+    card_on_hands = ''
+    flop = ''
+    turn = ''
+    river = ''
   
   with st.form('selection1', clear_on_submit = True):
     selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
     enter1 = st.form_submit_button("Confirm the 2 cards")
     if enter1:
-      a=4
-    st.text(selection1)
+      card_on_hands = selection1
+    st.text(card_on_hands)
       
   with st.form('selection2', clear_on_submit = True):
     selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)
     enter2 = st.form_submit_button("Confirm the first 3 community cards")
     if enter2:
-      a=3
-    st.text(selection2)
+      flop = selection2
+    st.text(flop)
   
   with st.form('selection3', clear_on_submit = True):
     selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
     enter3 = st.form_submit_button("Confirm the 4th community card")
     if enter3:
-      a=2
-    st.text(selection3)
+      turn = selection3
+    st.text(turn)
   
   with st.form('selection4', clear_on_submit = True):
     selection4 = st.selectbox("The river: 5th community card", remaining_deck)
     enter4 = st.form_submit_button("Confirm the 5th community card")
     if enter4:
-      a=1
-    st.text(selection4)
+      river = selection4
+    st.text(river)
       
 with col2:
   if table:

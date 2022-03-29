@@ -63,14 +63,14 @@ with col1:
     selection3 = st.selectbox("The turn: 4th community card", remaining_deck)
     enter3 = st.form_submit_button("Confirm the 4th community card")
     if enter3:
-      turn = selection3.copy()
+      turn = selection3
     st.text(turn)
   
   with st.form('selection4', clear_on_submit = True):
     selection4 = st.selectbox("The river: 5th community card", remaining_deck)
     enter4 = st.form_submit_button("Confirm the 5th community card")
     if enter4:
-      river = selection4.copy()
+      river = selection4
     st.text(river)
       
 with col2:

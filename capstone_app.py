@@ -62,6 +62,7 @@ with col1:
       st.write(selection4)
       
 with col2:
-  
+  if table:
+    df
   
 

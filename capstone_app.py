@@ -13,6 +13,12 @@ def num_to_card(num):
 df = pd.read_csv("data_for_first_two_cards.csv")
 deck = [num_to_card(i) for i in range(52)]
 
+def reset_game():
+  remaining_deck = deck.copy()
+  my_cards, community = set({}), set({})
+  flop, turn, river = '', '', ''
+  return remaining_deck, my_cards, community, flop, turn, river
+    
 st.header("Welcome for using this calculator for Texas Hold'em Poker!")
 st.text("")
 
@@ -31,23 +37,17 @@ with st.sidebar:
 col1, col2 = st.columns([1,3])
 
 with col1:
-  remaining_deck = deck.copy()
+  remaining_deck, my_cards, community, flop, turn, river = reset_game()
   game = st.button("Start a new game")  
   if game:
-    remaining_deck = deck.copy()
-    my_cards = set({})
-    community = set({})
-    card_on_hands = ''
-    flop = ''
-    turn = ''
-    river = ''
+    remaining_deck, my_cards, community, flop, turn, river = reset_game()
   
   with st.form('selection1', clear_on_submit = True):
     selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
     enter1 = st.form_submit_button("Confirm the 2 cards")
     if enter1:
-      card_on_hands = selection1
-    st.text(card_on_hands)
+      my_cards = selection1
+    st.text(my_cards)
       
   with st.form('selection2', clear_on_submit = True):
     selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)

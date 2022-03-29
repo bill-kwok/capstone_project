@@ -1,3 +1,4 @@
+pip install itertools
 #-------------------------------------------------------------------------
 import streamlit as st
 import pandas as pd

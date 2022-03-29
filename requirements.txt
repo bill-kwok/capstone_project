@@ -3,3 +3,5 @@ pandas
 streamlit
 matplotlib
 seaborn
+numpy
+click==8

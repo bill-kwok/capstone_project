@@ -219,7 +219,7 @@ with col1:
   if enter4:
     first_col = ['Minimum Win rate', 'Maximum Draw rate', 'Minimum Lose rate']
     my_hand, sec_col = forth_river(card_to_num(river))
-    st.write('I have {}.'.format(my_hand))
+    st.write('I have "{}".'.format(hand_dict[my_hand]))
              
 with col2:
   if table:
@@ -231,7 +231,7 @@ with col2:
     plt.figure(figsize = (bar_size, bar_size))
     show_bar = sns.barplot(x = first_col, y = sec_col)
     plt.xticks(rotation = 45, horizontalalignment = 'right')
-    show_bar  
+    st.pyplot(show_bar)  
     
   if pie:
     plt.figure(figsize = (pie_size, pie_size))

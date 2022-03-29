@@ -14,10 +14,10 @@ df = pd.read_csv("data_for_first_two_cards.csv")
 deck = [i for i in range(52)]
 
 def reset_game():
-  remaining_num = deck.copy()
+  remaining_deck = deck.copy()
   my_cards, community = set({}), set({})
   flop, turn, river = '', '', ''
-  return remaining_num, my_cards, community, flop, turn, river
+  return remaining_deck, my_cards, community, flop, turn, river
     
 st.header("Welcome for using this calculator for Texas Hold'em Poker!")
 st.text("")

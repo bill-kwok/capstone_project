@@ -42,7 +42,7 @@ with col1:
     selection1 = st.multiselect("Which 2 cards have you got:", remaining_deck)
     enter1 = st.form_submit_button("Confirm the 2 cards")
     if enter1:
-      st.write(selection1)
+      st.text(selection1)
       
   with st.form('selection2', clear_on_submit = True):
     selection2 = st.multiselect("The flop: first 3 community cards", remaining_deck)

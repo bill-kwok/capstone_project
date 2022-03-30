@@ -109,18 +109,18 @@ def get_hand(list_of_nums):
 #-----------------------------------------------------------------------------------------------------------
 def two_cards_name(card1, card2):
   if card1 % 13 == card2 % 13:
-    start = 'pair:'
-    end = num_to_card(card1).split(' ')[1]
+    start = 'pair: '
+    end = num_to_card(card1).split(' ')[0]
   else:
     big = max([card1 % 13, card2 % 13])
     small = min([card1 % 13, card2 % 13])
     two_cards = num_to_card(small) +' '+ num_to_card(big)
-    end = ' '.join(two_cards.split(' ')[1::2])
+    end = ' '.join(two_cards.split(' ')[0::3])
     if card1 // 13 == card2 // 13:
-      start = 'same suit:'
+      start = 'same suit: '
     else:
-      start = 'other:'        
-  return start + ' ' + end
+      start = 'other: '        
+return start + end
   
 def first_two(card1, card2):
   remaining_deck.difference_update({card1, card2})

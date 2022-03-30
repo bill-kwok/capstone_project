@@ -120,7 +120,7 @@ def two_cards_name(card1, card2):
       start = 'same suit: '
     else:
       start = 'other: '        
-return start + end
+  return start + end
   
 def first_two(card1, card2):
   remaining_deck.difference_update({card1, card2})

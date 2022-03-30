@@ -256,7 +256,7 @@ with col2:
 
 with col3:
   if bar:
-    show_bar = plt.figure(figsize = (10, 10))
+    show_bar = plt.figure(figsize = (7, 7))
     plt.rc('font', size = 12)
     sns.barplot(x = first_col, y = sec_col)
     plt.xticks(rotation = 45, horizontalalignment = 'right')
@@ -264,7 +264,7 @@ with col3:
 
 with col4:
   if pie:
-    show_pie = plt.figure(figsize = (10, 10))
+    show_pie = plt.figure(figsize = (7, 7))
     plt.rc('font', size = 12)
     palette = sns.color_palette('colorblind')
     plt.pie(sec_col, labels = first_col, colors = palette, autopct='%.{}f%%'.format(dp))

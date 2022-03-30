@@ -183,8 +183,8 @@ st.subheader("Welcome and Good Luck!")
 st.text("")
 game = st.button("Start a new game")
 if game:
-  st.text("The new game will start automatically once you untick all of the options below.")
-  st.text("Unfortunately, Streamlit does not allow me to untick for you at this moment.")
+  st.write("The new game will start automatically once you untick all of the options below.")
+  st.write("Unfortunately, Streamlit does not allow me to untick for you at this moment.")
   
 with st.sidebar:
   table = st.checkbox("Table")
@@ -244,7 +244,7 @@ with col1:
       first_col = ['Winning hand rate', 'Drawing hand rate', 'Losing hand rate']
       my_hand, sec_col = forth_river(card_to_num(river))
       st.write('I have "{}".'.format(hand_dict[my_hand]))
-      st.text('Note that the table is for 2 players (including you) only, and drawing hand does not mean drawing game.')
+      st.write('Note that the table is for 2 players (including you) only, and drawing hand does not mean drawing game.')
              
 with col2:
   if table:

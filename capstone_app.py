@@ -256,7 +256,7 @@ with col2:
 
 with col3:
   if bar:
-    show_bar = plt.figure(figsize = 10, 10))
+    show_bar = plt.figure(figsize = (10, 10))
     plt.rc('font', size = 8)
     sns.barplot(x = first_col, y = sec_col)
     plt.xticks(rotation = 45, horizontalalignment = 'right')

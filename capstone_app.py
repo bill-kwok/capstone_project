@@ -178,7 +178,7 @@ def forth_river(card):
   return my_rank, win_rate
 #--------------------------------------------------------------------------------------------
 st.set_page_config(layout = "wide")
-st.subheader("Calculator for Texas Hold'em Poker")
+st.subheader("Texas Hold’em Poker Calculator 1.0")
 st.subheader("Welcome and Good Luck!")
 st.text("")
 game = st.button("Start a new game")

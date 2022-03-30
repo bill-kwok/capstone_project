@@ -10,12 +10,21 @@ from itertools import combinations
 #-------------------------------------------------------------------------
 pd.set_option('display.max_rows', 20)
 pd.set_option('display.max_columns', 20)
+df = pd.read_csv("data_for_first_two_cards.csv")
 deck = {i for i in range(52)}
 remaining_deck = deck.copy()
 my_cards, community = set({}), set({})
-df = pd.read_csv("data_for_first_two_cards.csv")
-first_col = ["Sample"]
-sec_col = [1]
+hand_dict = {0:'High card', 1:'One pair', 2:'Two pairs',
+             3:'Three of a kind', 4:'Straight', 5:'Flush',
+             6:'Full House', 7:'Four of a kind', 8:'Straight flush', 
+             9:'Royal flush'}
+hand_list = [hand_dict[9 - i] for i in hand_dict]
+first_col = hand_list
+sec_col = [3.2320620555914674e-05, 0.0003887743099801651, 
+           0.0016806722689075631, 0.025961022706955123, 
+           0.03014467439291948, 0.12069165530013329, 
+           0.048298697547758875, 0.23495536405695844, 
+           0.41611438569592785, 0.12173243309990331]
 #-------------------------------------------------------------------------
 def num_to_card(num):
   suit_dict = {0:'Spade', 1:'Heart', 2:'Club', 3:'Diamond'}
@@ -37,13 +46,6 @@ def card_to_num(string):
     rank_no = int(rank)-1
   return 13 * suit_no + rank_no
 #-------------------------------------------------------------------------
-hand_dict = {0:'High card', 1:'One pair', 2:'Two pairs',
-             3:'Three of a kind', 4:'Straight', 5:'Flush',
-             6:'Full House', 7:'Four of a kind', 8:'Straight flush', 
-             9:'Royal flush'}
-
-hand_list = [hand_dict[9 - i] for i in hand_dict]
-
 def same_rank(list_of_nums):
   result = 0 # High card
   rank = [x % 13 for x in list_of_nums]

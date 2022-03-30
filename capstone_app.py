@@ -8,8 +8,8 @@ import seaborn as sns
 
 from itertools import combinations
 #-------------------------------------------------------------------------
-pandas.set_option('display.max_rows', 20)
-pandas.set_option('display.max_columns', 20)
+pd.set_option('display.max_rows', 20)
+pd.set_option('display.max_columns', 20)
 deck = {i for i in range(52)}
 remaining_deck = deck.copy()
 my_cards, community = set({}), set({})

@@ -241,9 +241,10 @@ with col1:
       st.error("You have to confirm the forth community card first.")
       st.stop()      
     else:
-      first_col = ['Minimum Win rate', 'Maximum Draw rate', 'Minimum Lose rate']
+      first_col = ['Winning hand rate', 'Drawing hand rate', 'Losing hand rate']
       my_hand, sec_col = forth_river(card_to_num(river))
       st.write('I have "{}".'.format(hand_dict[my_hand]))
+      st.text('Note that the table is for 2 players (including you) only, and drawing hand does not mean drawing game.')
              
 with col2:
   if table:

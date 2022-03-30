@@ -33,13 +33,13 @@ def num_to_card(num):
   rank = num % 13 + 1
   if (rank == 1) | (rank > 10):
     rank = rank_dict[rank]
-  return suit + ' ' + str(rank)
+  return str(rank) + ' of ' + suit 
 
 def card_to_num(string):
   suit_dict = {'Spade':0, 'Heart':1, 'Club':2, 'Diamond':3}
   rank_dict = {'A':0, 'J':10, 'Q':11, 'K':12}
-  suit_no = int(suit_dict[string.split(" ")[0]])
-  rank = string.split(" ")[1]
+  suit_no = int(suit_dict[string.split(" ")[-1]])
+  rank = string.split(" ")[0]
   if rank.isalpha():
     rank_no = int(rank_dict[rank])
   else:

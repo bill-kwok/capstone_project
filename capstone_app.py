@@ -74,8 +74,9 @@ def five_consecutive(list_of_nums):
   consecutive = False
   kind = [x % 13 for x in list_of_nums]
   for i in kind:
-    if i < 9 & {x for x in range(i, i+5)}.issubset(set(kind)):
-      consecutive = 'Normal'
+    if i < 9:
+      if {x for x in range(i, i+5)}.issubset(set(kind)):
+        consecutive = 'Normal'
   if {9, 10, 11, 12, 0}.issubset(set(kind)): # 10JQKA
     consecutive = 'Royal'  
   return consecutive

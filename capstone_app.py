@@ -182,7 +182,7 @@ def forth_river(card):
 st.set_page_config(layout = "wide")
 st.subheader("Bet Smartly 1.0")
 st.subheader("Welcome and Good Luck!")
-st.text("This is a calculator for Texas Hold'em Poker.")
+st.write("This is a calculator for Texas Hold'em Poker.")
 game = st.button("Start a new game")
 if game:
   st.write("The new game will start automatically once you untick all of the options below.")

@@ -28,37 +28,37 @@ sec_col = [3.2320620555914674e-05, 0.0003887743099801651,
 #-------------------------------------------------------------------------
 def num_to_card(num):
   suit_dict = {0:'Spade', 1:'Heart', 2:'Club', 3:'Diamond'}
-  rank_dict = {1:'A', 11:'J', 12:'Q', 13:'K'}
+  kind_dict = {1:'A', 11:'J', 12:'Q', 13:'K'}
   suit = suit_dict[num // 13]
-  rank = num % 13 + 1
-  if (rank == 1) | (rank > 10):
-    rank = rank_dict[rank]
-  return str(rank) + ' of ' + suit 
+  kind = num % 13 + 1
+  if (kind == 1) | (kind > 10):
+    kind = kind_dict[kind]
+  return str(kind) + ' of ' + suit 
 
 def card_to_num(string):
   suit_dict = {'Spade':0, 'Heart':1, 'Club':2, 'Diamond':3}
-  rank_dict = {'A':0, 'J':10, 'Q':11, 'K':12}
+  kind_dict = {'A':0, 'J':10, 'Q':11, 'K':12}
   suit_no = int(suit_dict[string.split(" ")[-1]])
-  rank = string.split(" ")[0]
-  if rank.isalpha():
-    rank_no = int(rank_dict[rank])
+  kind = string.split(" ")[0]
+  if kind.isalpha():
+    kind_no = int(kind_dict[kind])
   else:
-    rank_no = int(rank)-1
-  return 13 * suit_no + rank_no
+    kind_no = int(kind)-1
+  return 13 * suit_no + kind_no
 #-------------------------------------------------------------------------
-def same_rank(list_of_nums):
+def same_kind(list_of_nums):
   result = 0 # High card
-  rank = [x % 13 for x in list_of_nums]
-  rank_count = [rank.count(i) for i in range(13)]
-  if rank_count.count(2) == 1:
+  kind = [x % 13 for x in list_of_nums]
+  kind_count = [rank.count(i) for i in range(13)]
+  if kind_count.count(2) == 1:
     result = 1 # One pair
-  if rank_count.count(2) >= 2:
+  if kind_count.count(2) >= 2:
     result = 2 # Two pairs
-  if rank_count.count(3) >= 1:
+  if kind_count.count(3) >= 1:
     result = 3 # Three of a kind
-    if (rank_count.count(3) >= 2) | ((rank_count.count(3) == 1) & (rank_count.count(2) >= 1)):
+    if (kind_count.count(3) >= 2) | ((kind_count.count(3) == 1) & (kind_count.count(2) >= 1)):
       result = 6 # Full house
-  if rank_count.count(4) >= 1:
+  if kind_count.count(4) >= 1:
     result = 7 # Four of a kind
   return result
 
@@ -72,11 +72,11 @@ def flush(list_of_nums):
 
 def five_consecutive(list_of_nums):
   consecutive = False
-  rank = sorted([x % 13 for x in list_of_nums])
-  diff = [rank[i+1] - rank[i] for i in range(len(rank)-1)]
-  if diff.count(1) >= 4:
-    consecutive = 'Normal'
-  if (0 in rank) & (12 in rank) & (11 in rank) & (10 in rank) & (9 in rank): # 10JQKA
+  kind = [x % 13 for x in list_of_nums]
+  for i in kind:
+    if i < 9 & {x for x in range(i, i+5)}.issubset(set(kind)):
+      consecutive = 'Normal'
+  if {9, 10, 11, 12, 0}.issubset(set(kind)): # 10JQKA
     consecutive = 'Royal'  
   return consecutive
 
@@ -105,7 +105,7 @@ def straight(list_of_nums):
   return result
 
 def get_hand(list_of_nums):
-  return max([same_rank(list_of_nums), flush(list_of_nums), straight(list_of_nums)])
+  return max([same_kind(list_of_nums), flush(list_of_nums), straight(list_of_nums)])
 #-----------------------------------------------------------------------------------------------------------
 def two_cards_name(card1, card2):
   if card1 % 13 == card2 % 13:

@@ -49,7 +49,7 @@ def card_to_num(string):
 def same_kind(list_of_nums):
   result = 0 # High card
   kind = [x % 13 for x in list_of_nums]
-  kind_count = [rank.count(i) for i in range(13)]
+  kind_count = [kind.count(i) for i in range(13)]
   if kind_count.count(2) == 1:
     result = 1 # One pair
   if kind_count.count(2) >= 2:

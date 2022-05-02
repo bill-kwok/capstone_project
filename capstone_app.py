@@ -1,4 +1,5 @@
 #-------------------------------------------------------------------------
+# import modules
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -8,24 +9,19 @@ import seaborn as sns
 
 from itertools import combinations
 #-------------------------------------------------------------------------
+# basic settings
 pd.set_option('display.max_rows', 20)
 pd.set_option('display.max_columns', 20)
-df = pd.read_csv("data_for_first_two_cards.csv")
-deck = {i for i in range(52)}
+df = pd.read_csv("data_for_first_two_cards.csv") # dataframe for the different first 2 cards
+#-------------------------------------------------------------------------
+# A of Spade to K of Spade: 0 to 12
+# A of Heart to K of Heart: 13 to 25
+# A of Club to K of Club: 26 to 38
+# A of Diamond to K of Diamond: 39 to 51
+deck = {i for i in range(52)} 
 remaining_deck = deck.copy()
 my_cards, community = set({}), set({})
-hand_dict = {0:'High card', 1:'One pair', 2:'Two pairs',
-             3:'Three of a kind', 4:'Straight', 5:'Flush',
-             6:'Full House', 7:'Four of a kind', 8:'Straight flush', 
-             9:'Royal flush'}
-hand_list = [hand_dict[9 - i] for i in hand_dict]
-first_col = hand_list
-sec_col = [3.2320620555914674e-05, 0.0002785074750030945, 
-           0.0016806722689075631, 0.025961022706955123, 
-           0.030254941227896553, 0.046193820871406985, 
-           0.048298697547758875, 0.23495536405695844, 
-           0.4382254574070431, 0.17411919581751437]
-#-------------------------------------------------------------------------
+
 def num_to_card(num):
   suit_dict = {0:'Spade', 1:'Heart', 2:'Club', 3:'Diamond'}
   kind_dict = {1:'A', 11:'J', 12:'Q', 13:'K'}
@@ -37,14 +33,27 @@ def num_to_card(num):
 
 def card_to_num(string):
   suit_dict = {'Spade':0, 'Heart':1, 'Club':2, 'Diamond':3}
-  kind_dict = {'A':0, 'J':10, 'Q':11, 'K':12}
+  kind_dict = {'A':1, 'J':11, 'Q':12, 'K':13}
   suit_no = int(suit_dict[string.split(" ")[-1]])
   kind = string.split(" ")[0]
   if kind.isalpha():
-    kind_no = int(kind_dict[kind])
+    kind_no = int(kind_dict[kind])-1
   else:
     kind_no = int(kind)-1
   return 13 * suit_no + kind_no
+#-------------------------------------------------------------------------
+hand_dict = {0:'High card', 1:'One pair', 2:'Two pairs',
+             3:'Three of a kind', 4:'Straight', 5:'Flush',
+             6:'Full House', 7:'Four of a kind', 8:'Straight flush', 
+             9:'Royal flush'}
+hand_list = [hand_dict[9 - i] for i in hand_dict]
+first_col = hand_list
+sec_col = [3.2320620555914674e-05, 0.0002785074750030945, 
+           0.0016806722689075631, 0.025961022706955123, 
+           0.030254941227896553, 0.046193820871406985, 
+           0.048298697547758875, 0.23495536405695844, 
+           0.4382254574070431, 0.17411919581751437] 
+
 #-------------------------------------------------------------------------
 def same_kind(list_of_nums):
   result = 0 # High card
@@ -107,7 +116,7 @@ def straight(list_of_nums):
 
 def get_hand(list_of_nums):
   return max([same_kind(list_of_nums), flush(list_of_nums), straight(list_of_nums)])
-#-----------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------
 def two_cards_name(card1, card2):
   if card1 % 13 == card2 % 13:
     start = 'pair: '
@@ -179,7 +188,7 @@ def forth_river(card):
   total = sum(win_rate)
   win_rate = [i/total for i in win_rate]
   return my_rank, win_rate
-#--------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------
 st.set_page_config(layout = "wide")
 st.subheader("Bet Smartly 1.0")
 st.subheader("Welcome and Good Luck!")

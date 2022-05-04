@@ -48,7 +48,7 @@ hand_dict = {0:'High card', 1:'One pair', 2:'Two pairs',
              9:'Royal flush'}
 hand_list = [hand_dict[9 - i] for i in hand_dict] # hand from highest rank to lowest
 first_col = hand_list
-sec_col = [3.2320620555914674e-05, 0.0002785074750030945, # pre-calculated probability of each hand
+sec_col = [3.2320620555914674e-05, 0.0002785074750030945, # pre-calculated probabilities of each hand
            0.0016806722689075631, 0.025961022706955123, 
            0.030254941227896553, 0.046193820871406985, 
            0.048298697547758875, 0.23495536405695844, 
@@ -122,6 +122,8 @@ def get_hand(list_of_nums):
 def two_cards_name(card1, card2):
   '''
   Getting the type of the first 2 cards used in the dataframe, for the use of filtering
+  Input: 2 numbers representing 2 cards
+  Output: the name of the type of the first 2 cards
   '''
   if card1 % 13 == card2 % 13:
     start = 'pair: '
@@ -138,6 +140,11 @@ def two_cards_name(card1, card2):
   return start + end
   
 def first_two(card1, card2):
+  '''
+  Getting the probabilities of each hand after the first 2 cards in hand by dataframe
+  Input: 2 numbers representing 2 cards
+  Output: the probabilities from the highest hand to the lowest
+  '''
   remaining_deck.difference_update({card1, card2})
   my_cards.update({card1, card2})
   filter = df.first_two_cards == two_cards_name(card1, card2)
@@ -145,6 +152,11 @@ def first_two(card1, card2):
   return rank_rate
 
 def second_flop(card1, card2, card3):
+  '''
+  Getting the probabilities of each hand after the first 3 community cards by combination
+  Input: 3 numbers representing 3 cards
+  Output: the probabilities from the highest hand to the lowest
+  '''
   remaining_deck.difference_update({card1, card2, card3})
   community.update({card1, card2, card3})
   all_possibility = combinations(remaining_deck, 2)
@@ -159,6 +171,11 @@ def second_flop(card1, card2, card3):
   return rank_rate
 
 def third_turn(card):
+  '''
+  Getting the probabilities of each hand after the 4th community card by combination
+  Input: a number representing the card
+  Output: the probabilities from the highest hand to the lowest
+  '''
   remaining_deck.remove(card)
   community.add(card)
 
@@ -173,6 +190,11 @@ def third_turn(card):
   return rank_rate
 
 def forth_river(card):
+  '''
+  Getting the hand and the probabilities of winning/drawing/losing hand after the 5th community card by combination
+  Input: a number representing the card
+  Output: the hand and the list of probabilities of winning/drawing/losing hand
+  '''
   remaining_deck.remove(card)
   community.add(card)
   my_rank = get_hand(list(my_cards.union(community)))
@@ -193,16 +215,17 @@ def forth_river(card):
   win_rate = [i/total for i in win_rate]
   return my_rank, win_rate
 #-------------------------------------------------------------------------
-st.set_page_config(layout = "wide")
+# App layout part
+st.set_page_config(layout = "wide") # setting wide mode as default
 st.subheader("Bet Smartly 1.0")
 st.subheader("Welcome and Good Luck!")
 st.write("This is a calculator for Texas Hold'em Poker.")
-game = st.button("Start a new game")
+game = st.button("Start a new game") # a button to reset the game
 if game:
   st.write("The new game will start automatically once you untick all of the options below.")
   st.write("Unfortunately, Streamlit does not allow me to untick for you at this moment.")
   
-with st.sidebar:
+with st.sidebar: # side bar for controling the table/bar chart/pie chart
   table = st.checkbox("Table")
   dp = st.slider("Number of decimal places", 1, 6, 2)
   st.title("")
@@ -216,7 +239,7 @@ with st.sidebar:
 
 col1, col2, col3, col4 = st.columns([5,5, bar_size, pie_size])
 
-with col1:  
+with col1:
   hand_cards = st.multiselect("Which 2 cards have you got:", [num_to_card(i) for i in remaining_deck])
   enter1 = st.checkbox("Confirm the 2 cards")
   if enter1:

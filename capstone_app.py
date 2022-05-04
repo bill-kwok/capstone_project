@@ -46,15 +46,16 @@ hand_dict = {0:'High card', 1:'One pair', 2:'Two pairs',
              3:'Three of a kind', 4:'Straight', 5:'Flush',
              6:'Full House', 7:'Four of a kind', 8:'Straight flush', 
              9:'Royal flush'}
-hand_list = [hand_dict[9 - i] for i in hand_dict]
+hand_list = [hand_dict[9 - i] for i in hand_dict] # hand from highest rank to lowest
 first_col = hand_list
-sec_col = [3.2320620555914674e-05, 0.0002785074750030945, 
+sec_col = [3.2320620555914674e-05, 0.0002785074750030945, # pre-calculated probability of each hand
            0.0016806722689075631, 0.025961022706955123, 
            0.030254941227896553, 0.046193820871406985, 
            0.048298697547758875, 0.23495536405695844, 
            0.4382254574070431, 0.17411919581751437] 
 
 #-------------------------------------------------------------------------
+# Functions to get the highest hand by the list of cards represented in number
 def same_kind(list_of_nums):
   result = 0 # High card
   kind = [x % 13 for x in list_of_nums]
@@ -99,7 +100,7 @@ def straight(list_of_nums):
     heart = [x for x in list_of_nums if x in range(13,26)]
     club = [x for x in list_of_nums if x in range(26,39)]
     diamond = [x for x in list_of_nums if x >= 39]
-    consecutive2 = 0
+    consecutive2 = 0 # checking for straight flush
     if len(spade) >= 5:
       consecutive2 = five_consecutive(spade)     
     if len(heart) >= 5:
@@ -117,7 +118,11 @@ def straight(list_of_nums):
 def get_hand(list_of_nums):
   return max([same_kind(list_of_nums), flush(list_of_nums), straight(list_of_nums)])
 #-------------------------------------------------------------------------
+# Functions for getting probability at each stage
 def two_cards_name(card1, card2):
+  '''
+  Getting the type of the first 2 cards used in the dataframe, for the use of filtering
+  '''
   if card1 % 13 == card2 % 13:
     start = 'pair: '
     end = num_to_card(card1).split(' ')[0]
@@ -135,8 +140,7 @@ def two_cards_name(card1, card2):
 def first_two(card1, card2):
   remaining_deck.difference_update({card1, card2})
   my_cards.update({card1, card2})
-  comb_name = two_cards_name(card1, card2)
-  filter = df.first_two_cards == comb_name
+  filter = df.first_two_cards == two_cards_name(card1, card2)
   rank_rate = np.array(df[filter])[0][1:]
   return rank_rate
 
